@@ -1,0 +1,69 @@
+Ok aqui vamos a tratar de convertir estas herramientas en apps para iphone.
+
+De preferencia en javascript para poderlas compilar en titanium y jalen en iphone, ipod, ipad android y en la extension de wifileask mwahaha.
+eh aqui la descripcion:
+
+El FUAwey.html es un clone del mac2wepkey.py pero con la mejora de que no requiere python para funcionar.
+Solo funciona con modems marca Huahuei. el proceso es simple, ingresas la mac del AP y te regresa la clave por default
+
+El stKeys2.exe es un generador de claves para thomsom. Desgraciadamente el codigo para este programa no lo he podido conseguir para poder reproducirlo. Sin embargo el algorimo si lo tengo
+
+he aqui el copy paste #####################################################
+The format of a serial number:
+
+   CP YY WW PP XXX (CC)
+
+   And from what i can tell of the following serial number taken from 
+   router i received.
+
+   CP 06 15 JT 109 (53)
+
+   YY is the year produced.      ( 2006  ) ?
+   WW is the week of year.       ( some week of April ) ?
+   PP is the production code.    ( JT ) factory code?
+   CC is the configuration code. ( 53 ) seems to be 00 - ZZ (0-9/A-Z)
+
+   I can only guess that the XXX values represent the unit number
+
+   **************************************************************************
+
+   The key generation is simple enough.
+
+   Take as example: "CP0615JT109 (53)"
+
+   Remove the CC and PP values
+
+     "CP0615109"
+
+   Convert the XXX values to hexadecimal.
+
+     "CP0615313039"
+
+   Process with SHA-1
+
+     742da831d2b657fa53d347301ec610e1ebf8a3d0
+
+   The last 3 bytes are converted to 6 byte string, and appended to
+   the word "SpeedTouch" which becomes the default SSID.
+
+     "SpeedTouchF8A3D0"
+
+   The first 5 bytes are converted to a 10 byte string which
+   becomes the default WEP/WPA key.
+
+    "742DA831D2"
+
+   Thats it..
+
+#####################################################################
+intenté reproducirlo pero mis resultados fueron infructuosos... si generaba la lista de claves, pero no coincidian..
+
+anyways, el .exe se corre desde command line:
+en ubuntu con wine.
+
+$wine stKeys2.exe abc123 11
+
+donde abc123 son los 6 numeros del nombre del SSID marca thomsom y el 11 es hasta el año en que va a generar claves (en este caso 2011).
+
+
+ah si, tengo las ranbow tables para thomsom pero pesan 50 mb comprimidas y tengo el diccionario de android q pesa 20 pero no lo hemos podido desencriptar... T_T
